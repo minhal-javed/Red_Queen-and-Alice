@@ -8,7 +8,7 @@ export const RedQueen=()=>{
 
     const animations = React.useRef(null);
 
-    const animated =useWebAnimations(animations);
+//     const animated =useWebAnimations(animations);
     
     var playbackRateRQ=1;
     var playbackRateBG=0;
@@ -99,7 +99,7 @@ export const RedQueen=()=>{
          };
 
 
-        useEffect(() => {
+        useEffect(( playbackRateRQ) => {
           
           const fgAnimation=foreground1Movement.getAnimation();
          fgAnimation.currentTime=fgAnimation.effect.getTiming().duration/2
