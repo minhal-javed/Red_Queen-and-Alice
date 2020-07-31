@@ -6,11 +6,17 @@ import useWebAnimations from "@wellyshen/use-web-animations";
 
 export const RedQueen=()=>{
 
+<<<<<<< HEAD
   const animations = React.useRef(1);
   
   //  const animated =useWebAnimations(animations);
     
    
+=======
+//     const animations = React.useRef(null);
+
+//     const animated =useWebAnimations(animations);
+>>>>>>> bfc5a8964bb1a8295069c512d98282aee3052e5a
     
 
         const sceneryFrames = [
