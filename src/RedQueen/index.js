@@ -120,7 +120,7 @@ export const RedQueen=()=>{
           },3000)
 
              document.addEventListener('click',()=>{
-               playbackRateRQ *=1.1;
+               playbackRateRQ +=1.1;
                redQueen_alice.getAnimation().playbackRate=playbackRateRQ;
                adjustBackgroundPlayback()
              })
