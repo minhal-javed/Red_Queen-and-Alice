@@ -6,12 +6,12 @@ import useWebAnimations from "@wellyshen/use-web-animations";
 
 export const RedQueen=()=>{
 
-    const animations = React.useRef(null);
-
-    const animated =useWebAnimations(animations);
+  const animations = React.useRef(1);
+  
+  //  const animated =useWebAnimations(animations);
     
-    var playbackRateRQ=1;
-    var playbackRateBG=0;
+   
+    
 
         const sceneryFrames = [
         { transform: "translateX(100%)" },
@@ -77,55 +77,61 @@ export const RedQueen=()=>{
  
 
 
-         const adjustBackgroundPlayback = ()=> {
-           if (playbackRateRQ < 0.8) {
-
-            playbackRateBG=(playbackRateRQ/2)*-1;
-
-           } else if (playbackRateRQ > 1.2) {
-
-              playbackRateBG = (playbackRateRQ / 2);
-
-           } else {
-
-              playbackRateBG = 0;
-
-           }
-           foreground1Movement.getAnimation().playbackRate = playbackRateBG
-           foreground2Movement.getAnimation().playbackRate = playbackRateBG
-           background1Movement.getAnimation().playbackRate = playbackRateBG
-           background2Movement.getAnimation().playbackRate = playbackRateBG
-
-         };
+        
 
 
-        useEffect(() => {
+  useEffect(() => {
+    var playbackRateRQ = animations.current;
+    var playbackRateBG = 0;
           
           const fgAnimation=foreground1Movement.getAnimation();
-         fgAnimation.currentTime=fgAnimation.effect.getTiming().duration/2
+          console.log(fgAnimation)
+          fgAnimation.currentTime=fgAnimation.effect.getTiming().duration/2
 
           const bgAnimation = background1Movement.getAnimation();
           bgAnimation.currentTime = bgAnimation.effect.getTiming().duration / 2
 
 
+    const adjustBackgroundPlayback = () => {
+      if (playbackRateRQ < 0.8) {
 
+        playbackRateBG = (playbackRateRQ / 2) * -1;
 
+      } else if (playbackRateRQ > 1.2) {
 
-          setInterval(()=>{
+        playbackRateBG = (playbackRateRQ / 2);
+
+      } else {
+
+        playbackRateBG = 0;
+
+      }
+      foreground1Movement.getAnimation().playbackRate = playbackRateBG
+      foreground2Movement.getAnimation().playbackRate = playbackRateBG
+      background1Movement.getAnimation().playbackRate = playbackRateBG
+      background2Movement.getAnimation().playbackRate = playbackRateBG
+
+    };
+
+      setInterval(()=>{
             if(playbackRateRQ > 0.4){
-              playbackRateRQ *=0.9;
-              redQueen_alice.getAnimation().playbackRate =playbackRateRQ;
+              
+              playbackRateRQ *= 0.9;
+              
+              redQueen_alice.getAnimation().playbackRate = playbackRateRQ;
             }
             adjustBackgroundPlayback()
           },3000)
 
              document.addEventListener('click',()=>{
-               playbackRateRQ *=1.1;
+               playbackRateRQ +=1.1;
                redQueen_alice.getAnimation().playbackRate=playbackRateRQ;
                adjustBackgroundPlayback()
              })
-            
-         })
+  }, [redQueen_alice, background1Movement, background2Movement, foreground1Movement, foreground2Movement])
+
+
+
 
      return (
        <div className="wrapper">
