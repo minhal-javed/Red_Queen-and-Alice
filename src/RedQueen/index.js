@@ -99,7 +99,7 @@ export const RedQueen=()=>{
          };
 
 
-        useEffect(( playbackRateRQ) => {
+        useEffect(() => {
           
           const fgAnimation=foreground1Movement.getAnimation();
          fgAnimation.currentTime=fgAnimation.effect.getTiming().duration/2
